@@ -1,0 +1,317 @@
+/* 
+ * ================================================
+ * LEAFSPEC - Main Layout Styles
+ * Created by: SYLVAH™
+ * © 2026 SYLVAH™. All Rights Reserved.
+ * ================================================
+ */
+
+/* === BODY & BASE === */
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--charcoal);
+    background-color: var(--cream);
+    overflow-x: hidden;
+}
+
+
+/* === TYPOGRAPHY === */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    color: var(--forest-dark);
+}
+
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-3xl); }
+
+p {
+    color: var(--gray-medium);
+    line-height: var(--leading-relaxed);
+}
+
+
+/* === NAVIGATION BAR === */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--cream);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    z-index: var(--z-sticky);
+    transition: box-shadow var(--transition-base);
+}
+
+.navbar--scrolled {
+    box-shadow: var(--shadow-md);
+}
+
+.navbar__container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__logo {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: 2px;
+    color: var(--forest-dark);
+}
+
+.logo__mark {
+    font-size: var(--text-sm);
+    opacity: 0.6;
+}
+
+.navbar__menu {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+}
+
+.navbar__link {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--charcoal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color var(--transition-fast);
+}
+
+.navbar__link:hover {
+    color: var(--forest-dark);
+}
+
+.navbar__link--cta {
+    background-color: var(--forest-dark);
+    color: var(--white);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.navbar__link--cta:hover {
+    background-color: var(--forest-medium);
+    transform: translateY(-2px);
+}
+
+/* Mobile Menu Toggle (hidden on desktop) */
+.navbar__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--space-1);
+}
+
+.toggle__line {
+    width: 24px;
+    height: 2px;
+    background-color: var(--charcoal);
+    transition: all var(--transition-base);
+}
+
+
+/* === HERO SECTION === */
+
+.hero {
+    margin-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+}
+
+.hero__container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    align-items: center;
+}
+
+.hero__content {
+    max-width: 600px;
+}
+
+.hero__eyebrow {
+    display: inline-block;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--sage);
+    margin-bottom: var(--space-2);
+}
+
+.hero__title {
+    margin-bottom: var(--space-3);
+    line-height: 1.1;
+}
+
+.title__highlight {
+    color: var(--forest-medium);
+    font-style: italic;
+}
+
+.hero__description {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-6);
+    color: var(--gray-medium);
+}
+
+.hero__actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+/* Hero Image */
+.hero__visual {
+    position: relative;
+    height: 600px;
+}
+
+.hero__image-wrapper {
+    position: relative;
+    height: 100%;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-2xl);
+}
+
+.hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(45, 74, 62, 0.1) 0%,
+        rgba(45, 74, 62, 0.3) 100%
+    );
+}
+
+
+/* === CATALOG SECTION === */
+
+.catalog {
+    padding: var(--space-12) var(--space-4);
+    background-color: var(--sand);
+}
+
+.catalog__container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+.catalog__header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.catalog__title {
+    margin-bottom: var(--space-2);
+}
+
+.catalog__subtitle {
+    font-size: var(--text-lg);
+    color: var(--gray-medium);
+}
+
+.catalog__controls {
+    margin-bottom: var(--space-6);
+}
+
+.catalog__results {
+    margin-bottom: var(--space-4);
+}
+
+.results__text {
+    font-size: var(--text-sm);
+    color: var(--gray-medium);
+    font-weight: var(--weight-medium);
+}
+
+#resultsCount {
+    color: var(--forest-dark);
+    font-weight: var(--weight-semibold);
+}
+
+
+/* === ABOUT SECTION === */
+
+.about {
+    padding: var(--space-12) var(--space-4);
+    background-color: var(--forest-dark);
+    color: var(--white);
+}
+
+.about__container {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about__title {
+    color: var(--white);
+    margin-bottom: var(--space-4);
+}
+
+.about__text {
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: var(--leading-relaxed);
+}
+
+
+/* === FOOTER === */
+
+.footer {
+    background-color: var(--charcoal);
+    color: var(--white);
+    padding: var(--space-8) var(--space-4);
+}
+
+.footer__container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__logo {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--white);
+    margin-bottom: var(--space-1);
+}
+
+.footer__tagline {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--text-sm);
+}
+
+.footer__text {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: var(--space-1);
+}

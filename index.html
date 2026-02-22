@@ -1,0 +1,217 @@
+<!-- 
+    ================================================
+    LEAFSPEC - Urban Tree Archive
+    Created by: SYLVAH™
+    © 2026 SYLVAH™. All Rights Reserved.
+    ================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LeafSpec - Discover urban tree species and their characteristics for sustainable city planning">
+    <meta name="author" content="SYLVAH™">
+    <meta name="copyright" content="© 2026 SYLVAH™. All Rights Reserved.">
+    <meta name="creator" content="SYLVAH™">
+    <title>LeafSpec | Urban Tree Archive</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files (in order) -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#" class="navbar__logo">
+                LEAFSPEC<span class="logo__mark">©</span>
+            </a>
+            
+            <div class="navbar__menu" id="navMenu">
+                <a href="#home" class="navbar__link">Home</a>
+                <a href="#catalog" class="navbar__link">Species</a>
+                <a href="#about" class="navbar__link">About</a>
+                <a href="#contact" class="navbar__link navbar__link--cta">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="navbar__toggle" id="menuToggle" aria-label="Toggle menu">
+                <span class="toggle__line"></span>
+                <span class="toggle__line"></span>
+                <span class="toggle__line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Split Layout) -->
+    <section class="hero" id="home">
+        <div class="hero__container">
+            <!-- Left Side - Text Content -->
+            <div class="hero__content">
+                <span class="hero__eyebrow">Urban Forestry Archive</span>
+                <h1 class="hero__title">
+                    Witness the<br>
+                    <span class="title__highlight">Silent Architects</span>
+                </h1>
+                <p class="hero__description">
+                    A curated collection of tree species perfectly adapted for urban environments. 
+                    Discover nature's solutions to modern city planning.
+                </p>
+                <div class="hero__actions">
+                    <a href="#catalog" class="btn btn--primary">
+                        Explore Catalog
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <a href="#about" class="btn btn--secondary">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- Right Side - Hero Image -->
+            <div class="hero__visual">
+                <div class="hero__image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=1200" 
+                        alt="Ancient forest canopy" 
+                        class="hero__image"
+                    >
+                    <div class="image__overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="catalog" id="catalog">
+        <div class="catalog__container">
+            
+            <!-- Section Header -->
+            <div class="catalog__header">
+                <div class="header__content">
+                    <h2 class="catalog__title">Species Archive</h2>
+                    <p class="catalog__subtitle">12 curated urban trees for sustainable city planning</p>
+                </div>
+            </div>
+
+            <!-- Search & Filters -->
+            <div class="catalog__controls">
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <svg class="search-bar__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <input 
+                        type="text" 
+                        class="search-bar__input" 
+                        id="searchInput"
+                        placeholder="Search by name or scientific name..."
+                        aria-label="Search trees"
+                    >
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="filter-group">
+                    <button class="filter-btn filter-btn--active" data-filter="all">
+                        All Trees
+                    </button>
+                    <button class="filter-btn" data-filter="deciduous">
+                        Deciduous
+                    </button>
+                    <button class="filter-btn" data-filter="evergreen">
+                        Evergreen
+                    </button>
+                    <button class="filter-btn" data-filter="coniferous">
+                        Coniferous
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Info -->
+            <div class="catalog__results">
+                <p class="results__text">
+                    Showing <span id="resultsCount">12</span> species
+                </p>
+            </div>
+
+            <!-- Tree Grid (will be populated by JavaScript) -->
+            <div class="tree-grid" id="treeGrid">
+                <!-- Tree cards will be inserted here by JavaScript -->
+                <div class="tree-grid__loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading trees...</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section (Brief) -->
+    <section class="about" id="about">
+        <div class="about__container">
+            <div class="about__content">
+                <h2 class="about__title">About LeafSpec</h2>
+                <p class="about__text">
+                    LeafSpec is a comprehensive database of urban-suitable tree species, 
+                    designed for landscape architects, urban planners, and nature enthusiasts. 
+                    Each species is carefully documented with urban tolerance data, maintenance requirements, 
+                    and environmental benefits.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer__container">
+            <div class="footer__brand">
+                <h3 class="footer__logo">LEAFSPEC</h3>
+                <p class="footer__tagline">Growing sustainable cities, one tree at a time.</p>
+            </div>
+            
+            <div class="footer__info">
+                <p class="footer__text">© 2026 LeafSpec • Crafted by <strong>SYLVAH™</strong></p>
+                <p class="footer__text">Data sourced from urban forestry research.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tree Detail Modal (Hidden by default) -->
+    <div class="modal" id="treeModal" aria-hidden="true">
+        <div class="modal__backdrop" id="modalBackdrop"></div>
+        <div class="modal__container">
+            <div class="modal__content" id="modalContent">
+                <!-- Modal content will be inserted by JavaScript -->
+            </div>
+            <button class="modal__close" id="modalClose" aria-label="Close modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Signature Badge -->
+    <div class="signature-badge">
+        <span class="signature-badge__text">Made with 🌿 by</span>
+        <strong class="signature-badge__name">SYLVAH™</strong>
+    </div>
+
+    <!-- JavaScript Files (at end of body for performance) -->
+    <script src="js/trees-data.js"></script>
+    <script src="js/catalog.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/leafspec.js"></script>
+
+</body>
+</html>
