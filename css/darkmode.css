@@ -1,0 +1,108 @@
+/* ================================================
+   LEAFSPEC - Dark Mode
+   Created by: SYLVAH™
+   © 2026 SYLVAH™. All Rights Reserved.
+================================================ */
+
+[data-theme="dark"] {
+    --cream:         #0F1A16;
+    --sand:          #1A2820;
+    --white:         #1E2E28;
+    --charcoal:      #E8E4DC;
+    --gray-light:    #7A8C84;
+    --gray-medium:   #A8B8B0;
+    --forest-dark:   #5A9E7C;
+    --forest-medium: #6EBD94;
+    --sage:          #8FB89E;
+    --shadow-sm:  0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md:  0 4px 6px rgba(0,0,0,0.4);
+    --shadow-lg:  0 10px 15px rgba(0,0,0,0.4);
+    --shadow-xl:  0 20px 25px rgba(0,0,0,0.5);
+    --shadow-2xl: 0 25px 50px rgba(0,0,0,0.6);
+}
+
+body, .navbar, .tree-card, .modal__container,
+.search-bar__input, .sort-select, .filter-btn,
+.signature-badge, .hero__floating-card, .info-item,
+.modal__close, .lang-switcher, .lang-btn {
+    transition: background-color var(--transition-base),
+                border-color var(--transition-base),
+                color var(--transition-base),
+                box-shadow var(--transition-base);
+}
+
+[data-theme="dark"] .navbar            { background-color: var(--cream); border-bottom-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .hero              { background-color: var(--cream); }
+[data-theme="dark"] .catalog           { background-color: var(--sand); }
+[data-theme="dark"] .search-bar__input { background-color: var(--white); border-color: rgba(255,255,255,0.1); color: var(--charcoal); }
+[data-theme="dark"] .search-bar__input::placeholder { color: var(--gray-light); }
+[data-theme="dark"] .search-bar__input:focus { border-color: var(--forest-dark); box-shadow: 0 0 0 3px rgba(90,158,124,0.15); }
+[data-theme="dark"] .filter-btn        { background-color: var(--white); border-color: rgba(255,255,255,0.1); color: var(--charcoal); }
+[data-theme="dark"] .filter-btn:hover  { border-color: var(--sage); background-color: rgba(143,184,158,0.12); }
+[data-theme="dark"] .filter-btn--active { background-color: var(--forest-dark); border-color: var(--forest-dark); color: #0F1A16; }
+[data-theme="dark"] .sort-select       { background-color: var(--white); border-color: rgba(255,255,255,0.1); color: var(--charcoal); }
+[data-theme="dark"] .tree-card         { background-color: var(--white); }
+[data-theme="dark"] .tree-card__footer { border-top-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] .tree-card__fav-btn { background: rgba(30,46,40,0.92); color: var(--charcoal); }
+[data-theme="dark"] .skeleton {
+    background: linear-gradient(90deg, var(--sand) 25%, rgba(255,255,255,0.04) 50%, var(--sand) 75%);
+    background-size: 600px 100%;
+}
+[data-theme="dark"] .modal__backdrop   { background-color: rgba(0,0,0,0.85); }
+[data-theme="dark"] .modal__container  { background-color: #162118; }
+[data-theme="dark"] .modal__close      { background-color: var(--white); color: var(--charcoal); }
+[data-theme="dark"] .modal__close:hover { background-color: var(--forest-dark); color: #0F1A16; }
+[data-theme="dark"] .info-item         { background-color: var(--sand); }
+[data-theme="dark"] .tag               { background-color: rgba(90,158,124,0.15); color: var(--forest-dark); }
+[data-theme="dark"] .tolerance-bar     { background: rgba(255,255,255,0.08); }
+[data-theme="dark"] .about             { background-color: #0A1410; }
+[data-theme="dark"] .footer            { background-color: #080F0C; }
+[data-theme="dark"] .signature-badge   { background-color: rgba(22,33,24,0.95); border-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] .hero__floating-card { background-color: var(--white); }
+[data-theme="dark"] .active-filter-badge { background: var(--forest-dark); color: #0F1A16; }
+[data-theme="dark"] .lang-switcher     { background: var(--sand); }
+[data-theme="dark"] .lang-btn--active  { background: var(--white); color: var(--charcoal); }
+[data-theme="dark"] .favorites-section { background-color: var(--cream); }
+[data-theme="dark"] .regions           { background-color: var(--cream); }
+[data-theme="dark"] .region-card__body { background: var(--white); }
+[data-theme="dark"] .region-description { background: var(--sand); }
+[data-theme="dark"] .region-fact       { background: var(--white); }
+[data-theme="dark"] .wilaya-card       { background: var(--sand); }
+[data-theme="dark"] .wilaya-card:hover { background: var(--white); }
+[data-theme="dark"] .wilaya-card__tree { background: var(--cream); }
+[data-theme="dark"] .wilaya-modal__container { background: #162118; }
+[data-theme="dark"] .wilaya-info-item  { background: var(--sand); }
+[data-theme="dark"] .ndvi-analysis     { background: var(--sand); }
+[data-theme="dark"] .ndvi-stat-item    { background: var(--white); }
+[data-theme="dark"] .wilaya-tree-card  { background: var(--sand); }
+[data-theme="dark"] .wilaya-tree-card:hover { background: var(--white); }
+[data-theme="dark"] .region-tree-tag   { background: var(--sand); }
+[data-theme="dark"] .wilaya-card__code { background: var(--white); }
+[data-theme="dark"] .compare-bar       { background-color: #162118; border-top-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] .compare-modal__container { background-color: #162118; }
+[data-theme="dark"] .compare-table th  { background-color: var(--sand); color: var(--charcoal); }
+[data-theme="dark"] .compare-table td  { border-color: rgba(255,255,255,0.06); color: var(--charcoal); }
+[data-theme="dark"] .compare-table tr:hover td { background-color: rgba(90,158,124,0.06); }
+[data-theme="dark"] .compare-slot      { background-color: var(--sand); border-color: rgba(255,255,255,0.1); }
+[data-theme="dark"] .compare-slot--empty { border-color: rgba(255,255,255,0.08); color: var(--gray-light); }
+
+/* Dark mode toggle button */
+.darkmode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: var(--sand);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+.darkmode-toggle:hover { background: var(--forest-dark); transform: rotate(20deg) scale(1.1); }
+.darkmode-toggle .icon-sun  { display: none; }
+.darkmode-toggle .icon-moon { display: block; }
+[data-theme="dark"] .darkmode-toggle .icon-sun  { display: block; }
+[data-theme="dark"] .darkmode-toggle .icon-moon { display: none; }

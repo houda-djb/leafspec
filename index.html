@@ -6,7 +6,7 @@
     ================================================
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,15 +21,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- CSS Files (in order) -->
+    <!-- CSS Files -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/translation.css">
+    <link rel="stylesheet" href="css/darkmode.css">
+    <link rel="stylesheet" href="css/compare.css">
+    <link rel="stylesheet" href="css/regions.css">
+
+    <!-- Dark mode: apply before paint to avoid flash -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('leafspec_theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 </head>
 <body>
     
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="navbar__container">
@@ -38,10 +57,28 @@
             </a>
             
             <div class="navbar__menu" id="navMenu">
-                <a href="#home" class="navbar__link">Home</a>
-                <a href="#catalog" class="navbar__link">Species</a>
-                <a href="#about" class="navbar__link">About</a>
-                <a href="#contact" class="navbar__link navbar__link--cta">Contact</a>
+                <a href="#home"     class="navbar__link" data-i18n="nav_home">Home</a>
+                <a href="#catalog"  class="navbar__link" data-i18n="nav_species">Species</a>
+                <a href="#regions"  class="navbar__link">Regions</a>
+                <a href="#favorites" class="navbar__link" id="favNavLink">
+                    <span data-i18n="nav_favorites">Favorites</span>
+                    <span class="fav-count-badge" id="favCountBadge" style="display:none">0</span>
+                </a>
+                <a href="#about"   class="navbar__link" data-i18n="nav_about">About</a>
+                <a href="#contact" class="navbar__link navbar__link--cta" data-i18n="nav_contact">Contact</a>
+
+                <!-- Language Switcher -->
+                <div class="lang-switcher" role="group" aria-label="Language selector">
+                    <button class="lang-btn lang-btn--active" data-lang="en" onclick="I18n.setLang('en')">EN</button>
+                    <button class="lang-btn" data-lang="fr" onclick="I18n.setLang('fr')">FR</button>
+                    <button class="lang-btn" data-lang="ar" onclick="I18n.setLang('ar')">ع</button>
+                </div>
+
+                <!-- Dark Mode Toggle -->
+                <button class="darkmode-toggle" onclick="toggleTheme()" aria-label="Switch to dark mode" title="Dark mode">
+                    <span class="icon-moon">🌙</span>
+                    <span class="icon-sun">☀️</span>
+                </button>
             </div>
             
             <!-- Mobile Menu Button -->
@@ -53,32 +90,48 @@
         </div>
     </nav>
 
-    <!-- Hero Section (Split Layout) -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero__container">
-            <!-- Left Side - Text Content -->
             <div class="hero__content">
-                <span class="hero__eyebrow">Urban Forestry Archive</span>
+                <span class="hero__eyebrow" data-i18n="hero_eyebrow">Urban Forestry Archive</span>
                 <h1 class="hero__title">
-                    Witness the<br>
-                    <span class="title__highlight">Silent Architects</span>
+                    <span data-i18n="hero_title_line1">Witness the</span><br>
+                    <span class="title__highlight" data-i18n="hero_title_highlight">Silent Architects</span>
                 </h1>
-                <p class="hero__description">
-                    A curated collection of tree species perfectly adapted for urban environments. 
+                <p class="hero__description" data-i18n="hero_description">
+                    A curated collection of 57 tree species perfectly adapted for urban environments. 
                     Discover nature's solutions to modern city planning.
                 </p>
+                <div class="hero__stats">
+                    <div class="hero__stat">
+                        <span class="stat__number" data-target="57">0</span>
+                        <span class="stat__label" data-i18n="hero_stat_species">Species</span>
+                    </div>
+                    <div class="hero__stat">
+                        <span class="stat__number" data-target="4">0</span>
+                        <span class="stat__label" data-i18n="hero_stat_categories">Categories</span>
+                    </div>
+                    <div class="hero__stat">
+                        <span class="stat__number" data-target="58">0</span>
+                        <span class="stat__label">Wilayas</span>
+                    </div>
+                    <div class="hero__stat">
+                        <span class="stat__number" data-target="3">0</span>
+                        <span class="stat__label">Regions</span>
+                    </div>
+                </div>
                 <div class="hero__actions">
                     <a href="#catalog" class="btn btn--primary">
-                        Explore Catalog
+                        <span data-i18n="hero_cta_explore">Explore Catalog</span>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </a>
-                    <a href="#about" class="btn btn--secondary">Learn More</a>
+                    <a href="#regions" class="btn btn--secondary">Algeria Regions</a>
                 </div>
             </div>
             
-            <!-- Right Side - Hero Image -->
             <div class="hero__visual">
                 <div class="hero__image-wrapper">
                     <img 
@@ -88,6 +141,13 @@
                     >
                     <div class="image__overlay"></div>
                 </div>
+                <div class="hero__floating-card">
+                    <span class="floating-card__icon">🌿</span>
+                    <div>
+                        <p class="floating-card__title" data-i18n="hero_floating_title">57 Species Documented</p>
+                        <p class="floating-card__sub" data-i18n="hero_floating_sub">From 4 major categories</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -96,17 +156,14 @@
     <section class="catalog" id="catalog">
         <div class="catalog__container">
             
-            <!-- Section Header -->
             <div class="catalog__header">
                 <div class="header__content">
-                    <h2 class="catalog__title">Species Archive</h2>
-                    <p class="catalog__subtitle">12 curated urban trees for sustainable city planning</p>
+                    <h2 class="catalog__title" data-i18n="catalog_title">Species Archive</h2>
+                    <p class="catalog__subtitle" data-i18n="catalog_subtitle">57 curated urban trees for sustainable city planning</p>
                 </div>
             </div>
 
-            <!-- Search & Filters -->
             <div class="catalog__controls">
-                <!-- Search Bar -->
                 <div class="search-bar">
                     <svg class="search-bar__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -115,57 +172,120 @@
                         type="text" 
                         class="search-bar__input" 
                         id="searchInput"
-                        placeholder="Search by name or scientific name..."
+                        placeholder="Search by name, scientific name, or description..."
+                        data-i18n-placeholder="search_placeholder"
                         aria-label="Search trees"
+                        data-i18n-aria="search_aria"
                     >
+                    <button class="search-bar__clear" id="searchClear" aria-label="Clear search" data-i18n-aria="search_clear_aria" style="display:none">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
                 </div>
 
-                <!-- Filter Buttons -->
-                <div class="filter-group">
-                    <button class="filter-btn filter-btn--active" data-filter="all">
-                        All Trees
-                    </button>
-                    <button class="filter-btn" data-filter="deciduous">
-                        Deciduous
-                    </button>
-                    <button class="filter-btn" data-filter="evergreen">
-                        Evergreen
-                    </button>
-                    <button class="filter-btn" data-filter="coniferous">
-                        Coniferous
-                    </button>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <button class="filter-btn filter-btn--active" data-filter="all"        data-i18n="filter_all">All Trees</button>
+                        <button class="filter-btn" data-filter="deciduous"  data-i18n="filter_deciduous">Deciduous</button>
+                        <button class="filter-btn" data-filter="evergreen"  data-i18n="filter_evergreen">Evergreen</button>
+                        <button class="filter-btn" data-filter="coniferous" data-i18n="filter_coniferous">Coniferous</button>
+                        <button class="filter-btn" data-filter="favorites"  id="favFilterBtn"  data-i18n="filter_favorites">♥ Favorites</button>
+                    </div>
+                    <div class="filter-actions">
+                        <div class="sort-select-wrapper">
+                            <select class="sort-select" id="sortSelect" aria-label="Sort trees">
+                                <option value="default"     data-i18n="sort_default">Sort: Default</option>
+                                <option value="name-asc"    data-i18n="sort_name_asc">Name A → Z</option>
+                                <option value="name-desc"   data-i18n="sort_name_desc">Name Z → A</option>
+                                <option value="height-asc"  data-i18n="sort_height_asc">Height: Short → Tall</option>
+                                <option value="height-desc" data-i18n="sort_height_desc">Height: Tall → Short</option>
+                                <option value="growth-fast" data-i18n="sort_growth_fast">Growth: Fastest First</option>
+                            </select>
+                        </div>
+                        <button class="clear-filters-btn" id="clearFiltersBtn" data-i18n="clear_filters" style="display:none">
+                            ✕ Clear Filters
+                        </button>
+                    </div>
+                </div>
+
+                <div class="active-filters" id="activeFilters" style="display:none">
+                    <span class="active-filters__label" data-i18n="active_label">Active:</span>
+                    <div class="active-filters__badges" id="activeFilterBadges"></div>
                 </div>
             </div>
 
-            <!-- Results Info -->
             <div class="catalog__results">
                 <p class="results__text">
-                    Showing <span id="resultsCount">12</span> species
+                    <span data-i18n="results_showing">Showing</span>
+                    <span id="resultsCount">57</span>
+                    <span data-i18n="results_of">of</span>
+                    <span id="totalCount">57</span>
+                    <span data-i18n="results_species">species</span>
                 </p>
             </div>
 
-            <!-- Tree Grid (will be populated by JavaScript) -->
             <div class="tree-grid" id="treeGrid">
-                <!-- Tree cards will be inserted here by JavaScript -->
-                <div class="tree-grid__loading">
-                    <div class="loading-spinner"></div>
-                    <p>Loading trees...</p>
+                <div class="tree-card tree-card--skeleton" aria-hidden="true">
+                    <div class="skeleton skeleton--image"></div>
+                    <div class="skeleton skeleton--title"></div>
+                    <div class="skeleton skeleton--text"></div>
+                    <div class="skeleton skeleton--text skeleton--short"></div>
+                </div>
+                <div class="tree-card tree-card--skeleton" aria-hidden="true">
+                    <div class="skeleton skeleton--image"></div>
+                    <div class="skeleton skeleton--title"></div>
+                    <div class="skeleton skeleton--text"></div>
+                    <div class="skeleton skeleton--text skeleton--short"></div>
+                </div>
+                <div class="tree-card tree-card--skeleton" aria-hidden="true">
+                    <div class="skeleton skeleton--image"></div>
+                    <div class="skeleton skeleton--title"></div>
+                    <div class="skeleton skeleton--text"></div>
+                    <div class="skeleton skeleton--text skeleton--short"></div>
+                </div>
+                <div class="tree-card tree-card--skeleton" aria-hidden="true">
+                    <div class="skeleton skeleton--image"></div>
+                    <div class="skeleton skeleton--title"></div>
+                    <div class="skeleton skeleton--text"></div>
+                    <div class="skeleton skeleton--text skeleton--short"></div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- About Section (Brief) -->
+    <!-- ============================================================
+         REGIONS SECTION — Algeria's 3 Natural Regions + 58 Wilayas
+    ============================================================ -->
+    <section class="regions" id="regions">
+        <!-- Built dynamically by regions.js -->
+    </section>
+
+    <!-- Favorites Section -->
+    <section class="favorites-section" id="favorites" style="display:none">
+        <div class="catalog__container">
+            <div class="catalog__header">
+                <h2 class="catalog__title" data-i18n="fav_section_title">Your Favorites</h2>
+                <p class="catalog__subtitle" data-i18n="fav_section_subtitle">Trees you've bookmarked for reference</p>
+            </div>
+            <div class="tree-grid" id="favoritesGrid"></div>
+            <div class="favorites-empty" id="favoritesEmpty">
+                <span class="favorites-empty__icon">🌱</span>
+                <p data-i18n="fav_empty">No favorites yet. Click the ♥ on any tree card to save it here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
     <section class="about" id="about">
         <div class="about__container">
             <div class="about__content">
-                <h2 class="about__title">About LeafSpec</h2>
-                <p class="about__text">
+                <h2 class="about__title" data-i18n="about_title">About LeafSpec</h2>
+                <p class="about__text" data-i18n="about_text">
                     LeafSpec is a comprehensive database of urban-suitable tree species, 
                     designed for landscape architects, urban planners, and nature enthusiasts. 
-                    Each species is carefully documented with urban tolerance data, maintenance requirements, 
-                    and environmental benefits.
+                    Each of the 57 species is carefully documented with urban tolerance data, 
+                    maintenance requirements, and environmental benefits.
                 </p>
             </div>
         </div>
@@ -176,24 +296,23 @@
         <div class="footer__container">
             <div class="footer__brand">
                 <h3 class="footer__logo">LEAFSPEC</h3>
-                <p class="footer__tagline">Growing sustainable cities, one tree at a time.</p>
+                <p class="footer__tagline" data-i18n="footer_tagline">Growing sustainable cities, one tree at a time.</p>
             </div>
-            
             <div class="footer__info">
-                <p class="footer__text">© 2026 LeafSpec • Crafted by <strong>SYLVAH™</strong></p>
-                <p class="footer__text">Data sourced from urban forestry research.</p>
+                <p class="footer__text">
+                    <span data-i18n="footer_copy">© 2026 LeafSpec • Crafted by</span> <strong>SYLVAH™</strong>
+                </p>
+                <p class="footer__text" data-i18n="footer_source">Data sourced from urban forestry research.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Tree Detail Modal (Hidden by default) -->
+    <!-- Tree Detail Modal -->
     <div class="modal" id="treeModal" aria-hidden="true">
         <div class="modal__backdrop" id="modalBackdrop"></div>
         <div class="modal__container">
-            <div class="modal__content" id="modalContent">
-                <!-- Modal content will be inserted by JavaScript -->
-            </div>
-            <button class="modal__close" id="modalClose" aria-label="Close modal">
+            <div class="modal__content" id="modalContent"></div>
+            <button class="modal__close" id="modalClose" aria-label="Close modal" data-i18n-aria="modal_close_aria">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
@@ -207,11 +326,18 @@
         <strong class="signature-badge__name">SYLVAH™</strong>
     </div>
 
-    <!-- JavaScript Files (at end of body for performance) -->
+    <!-- JavaScript — ORDER MATTERS -->
+    <script src="js/darkmode.js"></script>
+    <script src="js/translation.js"></script>
     <script src="js/trees-data.js"></script>
+    <script src="js/wilayas-data.js"></script>
     <script src="js/catalog.js"></script>
     <script src="js/modal.js"></script>
-    <script src="js/leafspec.js"></script>
+    <script src="js/favorites.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/compare.js"></script>
+    <script src="js/regions.js"></script>
 
 </body>
 </html>
